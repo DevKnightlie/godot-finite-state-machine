@@ -1,3 +1,6 @@
+const State = preload("./State.gd")
+const DefaultState = preload("./DefaultState.gd")
+
 # The state machine's target object, node, etc
 var target = null setget set_target, get_target
 
@@ -166,26 +169,3 @@ func _input(event):
 	"""
 	if _current_state.has_method("_input"): _current_state._input(event)
 
-class State:
-	# State ID
-	var id
-
-	# Target for the state (object, node, etc)
-	var target
-
-	# Reference to state machine
-	var state_machine
-
-	# State machine callback called during transition when entering this state
-	func _on_enter_state(): pass
-
-	# State machine callback called during transition when leaving this state
-	func _on_leave_state(): pass
-
-class DefaultState extends State:
-	"""
-	Default state class to implement null object pattern for the state machine's current state
-	"""
-	func _process(delta): print("Unimplemented _process(delta)")
-	func _physics_process(delta): print("Unimplemented _physics_process(delta)")
-	func _input(event): print("Unimplemented _input(event)")
